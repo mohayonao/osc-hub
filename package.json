@@ -1,0 +1,27 @@
+{
+  "name": "osc-hub",
+  "version": "0.1.0",
+  "description": "osc hub",
+  "author": "Nao Yonamine <mohayonao@gmail.com>",
+  "bin": "./osc-hub.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohayonao/osc-hub"
+  },
+  "bugs": {
+    "url": "https://github.com/mohayonao/osc-hub/issues"
+  },
+  "preferGlobal": "true",
+  "license": "MIT",
+  "keywords": [
+    "osc",
+    "hub"
+  ],
+  "dependencies": {
+    "colors": "^1.0.3",
+    "forever": "^0.13.0",
+    "forever-monitor": "^1.5.2",
+    "optionator": "^0.4.0",
+    "osc-min": "^0.2.0"
+  }
+}
