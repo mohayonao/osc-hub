@@ -26,6 +26,7 @@ $ osc-hub -s 57121 -r 57122
 ```
 
 Have fun!
+
 ![demo](http://otononaru.appspot.com/cdn/osc-hub/demo.gif)
 
 ## Options
