@@ -1,21 +1,24 @@
 {
   "name": "osc-hub",
-  "version": "0.1.0",
-  "description": "osc hub",
+  "description": "broadcast osc messages over the network",
+  "version": "0.2.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
-  "bin": "./osc-hub.js",
+  "preferGlobal": "true",
+  "bin": "./bin/osc-hub",
+  "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mohayonao/osc-hub"
+    "url": "https://github.com/mohayonao/osc-hub.git"
   },
   "bugs": {
     "url": "https://github.com/mohayonao/osc-hub/issues"
   },
-  "preferGlobal": "true",
+  "homepage": "https://github.com/mohayonao/osc-hub",
   "license": "MIT",
   "keywords": [
     "osc",
-    "hub"
+    "hub",
+    "broadcast"
   ],
   "dependencies": {
     "colors": "^1.0.3",
