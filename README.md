@@ -1,9 +1,9 @@
 # osc-hub
 > broadcast osc messages over the network
 
-[![NPM Version](http://img.shields.io/npm/v/osc-hub-client.svg?style=flat)](https://www.npmjs.org/package/osc-hub)
+[![NPM Version](http://img.shields.io/npm/v/osc-hub.svg?style=flat)](https://www.npmjs.org/package/osc-hub)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/mohayonao/osc-hub)
-[![Dependency Status](http://img.shields.io/david/mohayonao/osc-hub-client.svg?style=flat)](https://david-dm.org/mohayonao/osc-hub)
+[![Dependency Status](http://img.shields.io/david/mohayonao/osc-hub.svg?style=flat)](https://david-dm.org/mohayonao/osc-hub)
 
 The hub receives osc messages from all clients connected to a server and broadcasts them.
 It is useful to share osc messages between some computers over the network.
