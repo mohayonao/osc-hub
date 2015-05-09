@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "colors": "^1.1.0",
-    "forever": "^0.13.0",
+    "forever": "^0.14.1",
     "forever-monitor": "^1.5.2",
-    "optionator": "^0.4.0",
-    "osc-min": "^0.2.0"
+    "optionator": "^0.6.0",
+    "osc-msg": "^0.2.0"
   },
   "homepage": "https://github.com/mohayonao/osc-hub",
   "keywords": [
