@@ -25,6 +25,12 @@ Run a osc-hub client.
 $ osc-hub -s 57121 -r 57122
 ```
 
+(Advanced Users) multiple receivers
+
+```sh
+$ osc-hub -s 57121 -r 57122 -r 57123
+```
+
 Have fun!
 
 ![demo](http://otononaru.appspot.com/cdn/osc-hub/demo.gif)
@@ -50,13 +56,13 @@ This class is used create a OscHub server.
   - Begin accepting connections on the specified port.
 - `Event: connect`
   - `net.Socket`
-  - Emitted when a new connection.
+  - Emit when a new connection.
 - `Event: disconnect`
   - `net.Socket`
-  - Emitted when a connection is disconnected.
+  - Emit when a connection is disconnected.
 - `Event: data`
   - `Buffer`
-  - Emitted when data is received.
+  - Emit when data is received.
 
 ### OscHubClient
 The class is used create a OscHub client.
@@ -73,13 +79,16 @@ The class is used create a OscHub client.
   - Resumes reading after a call to `pause()`
 - `Event: connect`
   - `net.Socket`
-  - Emitted when a socket connection is successfully established.
+  - Emit when a socket connection is successfully established.
 - `Event: send`
   - `Buffer`
-  - Emitted when data is sent.
+  - Emit when data is sent.
 - `Event: receive`
   - `Buffer`
-  - Emitted when data is received.
+  - Emit when data is received.
+- `Event: error`
+  - `Error`
+  - Emit when error raised.
 
 ## License
 
