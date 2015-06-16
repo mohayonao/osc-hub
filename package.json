@@ -1,7 +1,7 @@
 {
   "name": "osc-hub",
   "description": "broadcast osc messages over the network",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bin": "./bin/osc-hub",
   "bugs": {
@@ -12,7 +12,7 @@
     "forever": "^0.14.1",
     "forever-monitor": "^1.5.2",
     "optionator": "^0.6.0",
-    "osc-msg": "^0.2.1"
+    "osc-msg": "^0.2.2"
   },
   "homepage": "https://github.com/mohayonao/osc-hub",
   "keywords": [
