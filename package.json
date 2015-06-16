@@ -12,7 +12,7 @@
     "forever": "^0.14.1",
     "forever-monitor": "^1.5.2",
     "optionator": "^0.6.0",
-    "osc-msg": "^0.2.1"
+    "osc-msg": "^0.2.2"
   },
   "homepage": "https://github.com/mohayonao/osc-hub",
   "keywords": [
