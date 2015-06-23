@@ -38,7 +38,7 @@ Have fun!
 ## Options
 ```  
     --server       server mode
--d, --daemon       enable daemon mode (available in server mode)
+-d, --daemon       enable daemon mode
 -h, --host String  server host - default: localhost
 -p, --port Int     server port - default: 52885
 -s, --send Int     send port
