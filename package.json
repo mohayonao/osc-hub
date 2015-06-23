@@ -1,14 +1,14 @@
 {
   "name": "osc-hub",
   "description": "broadcast osc messages over the network",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bin": "./bin/osc-hub",
   "bugs": {
     "url": "https://github.com/mohayonao/osc-hub/issues"
   },
   "dependencies": {
-    "colors": "^1.1.0",
+    "colors": "^1.1.2",
     "forever": "^0.14.1",
     "forever-monitor": "^1.5.2",
     "optionator": "^0.6.0",
