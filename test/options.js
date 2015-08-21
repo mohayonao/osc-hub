@@ -15,18 +15,6 @@ describe("options.parse(args: string[]): object", () => {
 
     assert(opts.server === true);
   });
-  it("--daemon", () => {
-    let cmd = "node osc-hub --daemon";
-    let opts = options.parse(cmd.split(" "));
-
-    assert(opts.daemon === true);
-  });
-  it("-d", () => {
-    let cmd = "node osc-hub -d";
-    let opts = options.parse(cmd.split(" "));
-
-    assert(opts.daemon === true);
-  });
   it("--host 192.168.0.1 --port 12345", () => {
     let cmd = "node osc-hub --host 192.168.0.1 --port 12345";
     let opts = options.parse(cmd.split(" "));

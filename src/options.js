@@ -9,12 +9,6 @@ export default optionator({
       description: "server mode",
     },
     {
-      option: "daemon",
-      alias: "d",
-      type: "Boolean",
-      description: "enable daemon mode (available in server mode)",
-    },
-    {
       option: "host",
       alias: "h",
       type: "String",

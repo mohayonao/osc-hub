@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-import forever from "forever";
 import colors from "colors";
 import options from "./options";
 import prettify from "./prettify";
@@ -13,32 +12,6 @@ function help() {
 
 function printVersion() {
   console.log("v%s", require("../package.json").version);
-}
-
-function daemonServer(opts) {
-  forever.startDaemon(__filename, {
-    args: [ "--server", "-p", opts.port ],
-  });
-}
-
-function daemonClient(opts) {
-  let args = [ "-h", opts.host, "-p", opts.port ];
-
-  if (opts.send) {
-    opts.send.forEach((port) => {
-      args.push("-s", port);
-    });
-  }
-
-  if (opts.receive) {
-    opts.receive.forEach((port) => {
-      return args.push("-r", port);
-    });
-  }
-
-  forever.startDaemon(__filename, {
-    args: args,
-  });
 }
 
 function runServer(opts) {
@@ -90,14 +63,7 @@ export default {
     }
 
     if (opts.server) {
-      if (opts.daemon) {
-        return daemonServer(opts);
-      }
       return runServer(opts);
-    }
-
-    if (opts.daemon) {
-      return daemonClient(opts);
     }
 
     return runClient(opts);
