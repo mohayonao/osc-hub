@@ -1,9 +1,11 @@
-var forever = require("forever");
-var colors = require("colors");
-var options = require("./options");
-var prettify = require("./prettify");
-var OscHubServer = require("./server");
-var OscHubClient = require("./client");
+/* eslint-disable no-console */
+
+import forever from "forever";
+import colors from "colors";
+import options from "./options";
+import prettify from "./prettify";
+import OscHubServer from "./server";
+import OscHubClient from "./client";
 
 function help() {
   console.log(options.generateHelp());
@@ -15,23 +17,23 @@ function printVersion() {
 
 function daemonServer(opts) {
   forever.startDaemon(__filename, {
-    args: [ "--server", "-p", opts.port ]
+    args: [ "--server", "-p", opts.port ],
   });
 }
 
 function daemonClient(opts) {
-  var args = [ "-h", opts.host, "-p", opts.port ];
+  let args = [ "-h", opts.host, "-p", opts.port ];
 
   if (opts.send) {
-    opts.send.forEach(function(port) {
-      return args.push("-s", port);
+    opts.send.forEach((port) => {
+      args.push("-s", port);
     });
   }
 
   if (opts.receive) {
-    opts.receive.forEach(function(port) {
+    opts.receive.forEach((port) => {
       return args.push("-r", port);
-    })
+    });
   }
 
   forever.startDaemon(__filename, {
@@ -40,44 +42,44 @@ function daemonClient(opts) {
 }
 
 function runServer(opts) {
-  var server = new OscHubServer();
+  let server = new OscHubServer();
 
-  server.listen(opts.port, function() {
+  server.listen(opts.port, () => {
     console.log("Listening on port %d", opts.port);
   });
 
-  server.on("error", function(e) {
+  server.on("error", (e) => {
     console.log(colors.red.underline(e.toString()));
   });
 }
 
 function runClient(opts) {
-  var client = new OscHubClient({ send: opts.send, receive: opts.receive });
+  let client = new OscHubClient({ send: opts.send, receive: opts.receive });
 
   if (!opts.quiet) {
-    client.on("send", function(data, msg) {
+    client.on("send", (data, msg) => {
       console.log(colors.yellow(">> %s"), prettify(msg));
     });
 
-    client.on("receive", function(data, msg) {
+    client.on("receive", (data, msg) => {
       console.log(colors.cyan("<< %s"), prettify(msg));
     });
   }
 
-  client.on("connect", function() {
+  client.on("connect", () => {
     console.log("connected: %s:%s", opts.host, opts.port);
   });
 
-  client.on("error", function(e) {
+  client.on("error", (e) => {
     console.log(colors.red.underline(e.toString()));
   });
 
-  client.connect({ host: opts.host, port: opts.port});
+  client.connect({ host: opts.host, port: opts.port });
 }
 
-module.exports = {
-  start: function() {
-    var opts = options.parse(process.argv);
+export default {
+  start() {
+    let opts = options.parse(process.argv);
 
     if (opts.help) {
       return help();
@@ -97,10 +99,7 @@ module.exports = {
     if (opts.daemon) {
       return daemonClient(opts);
     }
-    return runClient(opts);
-  }
-};
 
-if (module.parent === null) {
-  module.exports.start();
-}
+    return runClient(opts);
+  },
+};
