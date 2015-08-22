@@ -1,7 +1,7 @@
-import OscHubClient from "./OscHubClient";
-import OscHubServer from "./OscHubServer";
+import oscClient from "./osc-client";
+import oscServer from "./osc-server";
 
 export default {
-  Client: OscHubClient,
-  Server: OscHubServer,
+  client: oscClient,
+  server: oscServer,
 };

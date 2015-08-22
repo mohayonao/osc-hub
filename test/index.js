@@ -1,11 +1,11 @@
 import assert from "power-assert";
 import index from "../src";
-import OscHubClient from "../src/OscHubClient";
-import OscHubServer from "../src/OscHubServer";
+import oscClient from "../src/osc-client";
+import oscServer from "../src/osc-server";
 
 describe("index", () => {
   it("exports", () => {
-    assert(index.Client === OscHubClient);
-    assert(index.Server === OscHubServer);
+    assert(index.client === oscClient);
+    assert(index.server === oscServer);
   });
 });

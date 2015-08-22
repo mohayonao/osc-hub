@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 
+import net from "net";
 import colors from "colors";
 import options from "./options";
-import prettify from "./prettify";
-import OscHubServer from "./server";
-import OscHubClient from "./client";
+import oscClient from "./osc-client";
+import oscServer from "./osc-server";
+import utils from "./utils";
 
 let quiet = false;
 
@@ -14,51 +15,60 @@ function print(...args) {
   }
 }
 
+function printError(e) {
+  print(colors.red.underline(e.toString()));
+}
+
 function help() {
   print(options.generateHelp());
 }
 
 function printVersion() {
-  print("v%s", require("../package.json").version);
+  let version = require("../package.json").version;
+
+  print(`v${version}`);
 }
 
 function runServer(opts) {
-  let server = new OscHubServer();
+  let server = oscServer(net.createServer());
 
   server.listen(opts.port, () => {
     print("Listening on port %d", opts.port);
   });
 
-  server.on("error", (e) => {
-    print(colors.red.underline(e.toString()));
+  server.on("osc-hub:message", (msg) => {
+    print(colors.green(">> %s"), utils.prettify(msg));
   });
+
+  server.on("osc-hub:error", printError);
+
+  return server;
 }
 
 function runClient(opts) {
-  let client = new OscHubClient({ send: opts.send, receive: opts.receive });
-
-  client.on("send", (data, msg) => {
-    print(colors.yellow(">> %s"), prettify(msg));
-  });
-
-  client.on("receive", (data, msg) => {
-    print(colors.cyan("<< %s"), prettify(msg));
-  });
-
-  client.on("connect", () => {
+  let connection = net.connect({ host: opts.host, port: opts.port }, () => {
     print("connected: %s:%s", opts.host, opts.port);
   });
+  let client = oscClient(connection, opts);
 
-  client.on("error", (e) => {
-    print(colors.red.underline(e.toString()));
+  client.on("error", printError);
+
+  client.on("osc-hub:send", (msg) => {
+    print(colors.yellow(">> %s"), utils.prettify(msg));
   });
 
-  client.connect({ host: opts.host, port: opts.port });
+  client.on("osc-hub:receive", (msg) => {
+    print(colors.cyan("<< %s"), utils.prettify(msg));
+  });
+
+  client.on("osc-hub:error", printError);
+
+  return client;
 }
 
 export default {
-  start() {
-    let opts = options.parse(process.argv);
+  run(argv) {
+    let opts = options.parse(argv);
 
     if (opts.help) {
       return help();
