@@ -1,7 +1,7 @@
 {
   "name": "osc-hub",
   "description": "broadcast osc messages over the network",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bin": "./bin/osc-hub",
   "bugs": {
@@ -26,6 +26,7 @@
     "package.json",
     "README.md",
     "index.js",
+    "bin",
     "lib"
   ],
   "homepage": "https://github.com/mohayonao/osc-hub",
