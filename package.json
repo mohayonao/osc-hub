@@ -1,7 +1,7 @@
 {
   "name": "osc-hub",
   "description": "broadcast osc messages over the network",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bin": "./bin/osc-hub",
   "bugs": {
@@ -9,11 +9,26 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
-    "forever": "^0.14.1",
-    "forever-monitor": "^1.5.2",
     "optionator": "^0.6.0",
     "osc-msg": "^0.2.2"
   },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babel-eslint": "^4.0.10",
+    "eslint": "^1.2.1",
+    "espower-babel": "^3.2.0",
+    "isparta": "^3.0.3",
+    "mocha": "^2.2.5",
+    "power-assert": "^0.11.0",
+    "sinon": "^1.16.1"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "index.js",
+    "bin",
+    "lib"
+  ],
   "homepage": "https://github.com/mohayonao/osc-hub",
   "keywords": [
     "osc",
@@ -26,5 +41,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mohayonao/osc-hub.git"
+  },
+  "scripts": {
+    "build": "npm run build-to5",
+    "build-to5": "babel src --out-dir lib",
+    "cover": "babel-node $(npm bin)/isparta cover --report text --report html _mocha",
+    "lint": "eslint src test",
+    "prepublish": "rm -rf lib && npm run lint && npm run test && npm run build-to5",
+    "test": "mocha --compilers js:espower-babel/guess",
+    "travis": "npm run lint && npm run test"
   }
 }

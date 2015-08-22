@@ -1,44 +1,49 @@
-# osc-hub
+# OSC HUB
 > broadcast osc messages over the network
 
+[![Build Status](http://img.shields.io/travis/mohayonao/osc-hub.svg?style=flat-square)](https://travis-ci.org/mohayonao/osc-hub)
 [![NPM Version](http://img.shields.io/npm/v/osc-hub.svg?style=flat)](https://www.npmjs.org/package/osc-hub)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/mohayonao/osc-hub)
-[![Dependency Status](http://img.shields.io/david/mohayonao/osc-hub.svg?style=flat)](https://david-dm.org/mohayonao/osc-hub)
 
 The hub receives osc messages from all clients connected to a server and broadcasts them.
 It is useful to share osc messages between some computers over the network.
 
+![architecture](http://otononaru.appspot.com/cdn/osc-hub/osc-hub.png)
+
 ## Installation
+
 ```sh
-$ npm install -g osc-hub
+npm install -g osc-hub
 ```
 
 ## How to use
-Run a osc-hub server. `osc-hub --server -d` runs as a daemon server with [forever](https://github.com/nodejitsu/forever).
+Run a osc-hub server.
 
 ```sh
-$ osc-hub --server
+osc-hub --server
 ```
 
 Run a osc-hub client.
-```sh
-$ osc-hub -s 57121 -r 57122
-```
-
-(Advanced Users) multiple receivers
 
 ```sh
-$ osc-hub -s 57121 -r 57122 -r 57123
+osc-hub -s 57121 -r 57122
 ```
 
 Have fun!
 
 ![demo](http://otononaru.appspot.com/cdn/osc-hub/demo.gif)
 
+## Run as a daemon
+
+Run as a daemon with [forever](https://github.com/foreverjs/forever)..
+
+```sh
+forever start -c osc-hub . --server
+```
+
 ## Options
 ```  
     --server       server mode
--d, --daemon       enable daemon mode
 -h, --host String  server host - default: localhost
 -p, --port Int     server port - default: 52885
 -s, --send Int     send port
@@ -46,50 +51,6 @@ Have fun!
 -v, --version      print the version
 ```
 
-## API
-### OscHubServer
-This class is used create a OscHub server.
-
-- `new oschub.Server()`
-  - Constructor is a new OscHub server.
-- `server.listen(port, [ callback ])`
-  - Begin accepting connections on the specified port.
-- `Event: connect`
-  - `net.Socket`
-  - Emit when a new connection.
-- `Event: disconnect`
-  - `net.Socket`
-  - Emit when a connection is disconnected.
-- `Event: data`
-  - `Buffer`
-  - Emit when data is received.
-
-### OscHubClient
-The class is used create a OscHub client.
-
-- `new oschub.Client(options)`
-  - Constructor is a new OscHub client.
-  - `options` is an object with the following defaults: `{ send: null, receive: null }`
-- `client.connect(options)`
-  - Open the connection.
-  - `options` is passed to `net.connect()`
-- `client.pause()`
-  - Pauses the reading of data.
-- `client.resume()`
-  - Resumes reading after a call to `pause()`
-- `Event: connect`
-  - `net.Socket`
-  - Emit when a socket connection is successfully established.
-- `Event: send`
-  - `Buffer`
-  - Emit when data is sent.
-- `Event: receive`
-  - `Buffer`
-  - Emit when data is received.
-- `Event: error`
-  - `Error`
-  - Emit when error raised.
-
 ## License
 
-`osc-hub` is available under The MIT License.
+MIT
