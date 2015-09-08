@@ -6,7 +6,7 @@ function setupSendToOscHub(client, sendPorts) {
   function sendToOscHub(data) {
     let msg = OscMessage.fromBuffer(data);
 
-    if (!msg.error && msg.address[0] === "/") {
+    if (!msg.error) {
       client.write(data, () => {
         client.emit("osc-hub:send", msg, data);
       });
@@ -46,7 +46,7 @@ function setupRecvFromOscHub(client, recvPorts) {
       }
     }
 
-    if (!msg.error && msg.address[0] === "/") {
+    if (!msg.error) {
       loop();
     } else {
       client.emit("osc-hub:error", utils.createTypeError("invalid data", { data }));
