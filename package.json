@@ -10,7 +10,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "optionator": "^0.6.0",
-    "osc-msg": "^0.2.2"
+    "osc-msg": "^0.2.3"
   },
   "devDependencies": {
     "babel": "^5.8.23",
