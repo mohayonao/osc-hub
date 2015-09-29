@@ -46,12 +46,27 @@ function runServer(opts) {
 }
 
 function runClient(opts) {
-  let connection = net.connect({ host: opts.host, port: opts.port }, () => {
-    print("connected: %s:%s", opts.host, opts.port);
-  });
+  let connection = net.connect({ host: opts.host, port: opts.port });
   let client = oscClient(connection, opts);
 
-  client.on("error", printError);
+  client.on("connect", () => {
+    print("connected: %s:%s", opts.host, opts.port);
+  });
+
+  client.on("error", (msg) => {
+    printError(msg);
+    if (msg.code === "ECONNREFUSED") {
+      setTimeout(() => {
+        connection.connect({ host: opts.host, port: opts.port });
+      }, 1000);
+    }
+  });
+
+  client.on("end", () => {
+    setTimeout(() => {
+      connection.connect({ host: opts.host, port: opts.port });
+    }, 1000);
+  });
 
   client.on("osc-hub:send", (msg) => {
     print(colors.yellow(">> %s"), utils.prettify(msg));
